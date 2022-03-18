@@ -104,6 +104,12 @@ options:
               volumes; it is not used in requests to create gp2, st1, sc1, or
               standard volumes.
             type: int
+          throughput:
+            description: >
+              The throughput that the volume supports, in MiB/s.
+              This parameter is valid only for gp3 volumes.
+              Valid Range: Minimum value of 125. Maximum value of 1000.
+            type: int
           kms_key_id:
             description: The ARN of the AWS Key Management Service (AWS KMS) CMK used for encryption.
             type: str
@@ -643,6 +649,7 @@ def main():
                         delete_on_termination=dict(type='bool'),
                         encrypted=dict(type='bool'),
                         iops=dict(type='int'),
+                        throughput=dict(type='int'),
                         kms_key_id=dict(),
                         snapshot_id=dict(),
                         volume_size=dict(type='int'),
